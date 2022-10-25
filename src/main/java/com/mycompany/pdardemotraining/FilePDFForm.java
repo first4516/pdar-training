@@ -26,6 +26,7 @@ public class FilePDFForm extends javax.swing.JFrame {
         
         UIManager.put("OptionPane.messageFont", new Font("TH SarabunPSK", Font.PLAIN, 20));
         UIManager.put("OptionPane.buttonFont", new Font("TH SarabunPSK", Font.PLAIN, 18));
+        
     }
 
     /**
@@ -43,7 +44,7 @@ public class FilePDFForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnShowPDF = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextAreaDatail.setColumns(20);
         jTextAreaDatail.setFont(new java.awt.Font("TH SarabunPSK", 0, 24)); // NOI18N
