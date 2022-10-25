@@ -5,7 +5,7 @@
  */
 package com.mycompany.pdardemotraining;
 
-import com.songkhlaf.pdar.sslservices.SSLServiceTemplate;
+import com.mycompany.pdardemotraining.SSLServiceTemplate;
 import com.topaz.sigplus.SigPlus;
 import java.awt.Container;
 import java.awt.image.BufferedImage;
