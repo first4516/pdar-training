@@ -5,8 +5,8 @@
  */
 package com.mycompany.pdardemotraining;
 
-import com.mycompany.pdardemotraining.SSLServiceTemplate;
-import com.topaz.sigplus.SigPlus;
+//import com.mycompany.pdardemotraining.SSLServiceTemplate;
+//import com.topaz.sigplus.SigPlus;
 import java.awt.Container;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -130,7 +130,7 @@ public class JasperCrimeandEvi {
             JasperReport jasperReport2 = JasperCompileManager.compileReport("./Jasper/EVIDENCE_SIGNNAME.jrxml");
             JasperReport jasperReportSign = JasperCompileManager.compileReport("./Jasper/EVIDEANCEFORPDAR_P2_.jrxml");
             JasperReport subjasperReportSign = JasperCompileManager.compileReport("./Jasper/EVIDENCE_SIGNNAME2.jrxml");
-            SigPlus sigObj = null;
+//            SigPlus sigObj = null;
 //          Map parameters = new HashMap();
             HashMap<String, Object> parameters = new HashMap<String, Object>();
             HashMap<String, Object> parameters2 = new HashMap<String, Object>();
@@ -164,11 +164,11 @@ public class JasperCrimeandEvi {
             int watermark = list.length() % 7;
             System.out.println("watermark:" + watermark);
             File f2 = new File("");
-            if (SSLServiceTemplate.trainstatus == 1) {
-                f2 = new File("./Master/PoliceWaterMarkCode/background" + watermark + ".png");
-            } else {
-                f2 = new File("./Master/PoliceWaterMarkCode/backgroundTraining.png");
-            }
+//            if (SSLServiceTemplate.trainstatus == 1) {
+//                f2 = new File("./Master/PoliceWaterMarkCode/background" + watermark + ".png");
+//            } else {
+//                f2 = new File("./Master/PoliceWaterMarkCode/backgroundTraining.png");
+//            }
             File f3 = new File("./Master/draf.png");
 
             parameters.put("logourl", imagedd);

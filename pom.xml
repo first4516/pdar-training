@@ -90,7 +90,7 @@
             <version>6.17.0</version>
             <type>jar</type>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.topaz</groupId>
             <artifactId>sigplus</artifactId>
             <version>2.6.8</version>
@@ -102,7 +102,7 @@
             <artifactId>Daily</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>jar</type>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
