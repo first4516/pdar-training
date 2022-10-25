@@ -81,9 +81,9 @@ public class CaptureForm extends javax.swing.JDialog {
         running = true;
         new videoTaker().start();
 
-        if (ScreenUtil.getNumberOfScreen() > 1) {
-            FunctionMain.WebcamPreviewShow(webcam);
-        }
+//        if (ScreenUtil.getNumberOfScreen() > 1) {
+//            FunctionMain.WebcamPreviewShow(webcam);
+//        }
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override

@@ -5,10 +5,12 @@
  */
 package com.mycompany.pdardemotraining;
 
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -21,6 +23,9 @@ public class FilePDFForm extends javax.swing.JFrame {
      */
     public FilePDFForm() {
         initComponents();
+        
+        UIManager.put("OptionPane.messageFont", new Font("TH SarabunPSK", Font.PLAIN, 20));
+        UIManager.put("OptionPane.buttonFont", new Font("TH SarabunPSK", Font.PLAIN, 18));
     }
 
     /**
@@ -115,17 +120,21 @@ public class FilePDFForm extends javax.swing.JFrame {
         SimpleDateFormat formattime = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));
         Date time = new Date();
 
-        if (ScreenUtil.getNumberOfScreen() > 1) {
-            if (evt.getClickCount() == 1) {
-                String detail = jTextAreaDatail.getText();
-                String filePath = JasperCrimeandEvi.ExportPrintEvidencPDF("หน่วยงานบริการลูกค้าระบบ CRIMES", "ศทก.", "สำนักงานเทคโนโลยีสารสนเทศและการสื่อสาร", "1", formatdate.format(date), formattime.format(time),
-                    detail, "", "", "", "", false, "", "64", "" + "พรชัย สอนสำโรง (เจ้าหน้าที่สงขลา)", "","");
-                //String filePath = "D:/ProgressMeetingSOC_JAN2565.pdf";
-                System.out.println("FilePath : " + filePath);
-                FunctionMain.CustomerPDFViewer(filePath);
+        if(jTextAreaDatail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "กรุณากรอกข้อความทดสอบออกรายงาน PDF");
+        }else {
+            if (ScreenUtil.getNumberOfScreen() > 1) {
+                if (evt.getClickCount() == 1) {
+                    String detail = jTextAreaDatail.getText();
+                    String filePath = JasperCrimeandEvi.ExportPrintEvidencPDF("หน่วยงานบริการลูกค้าระบบ CRIMES", "ศทก.", "สำนักงานเทคโนโลยีสารสนเทศและการสื่อสาร", "1", formatdate.format(date), formattime.format(time),
+                            detail, "", "", "", "", false, "", "64", "" + "พรชัย สอนสำโรง (เจ้าหน้าที่สงขลา)", "", "");
+                    //String filePath = "D:/ProgressMeetingSOC_JAN2565.pdf";
+                    System.out.println("FilePath : " + filePath);
+                    FunctionMain.CustomerPDFViewer(filePath);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "ไม่พบจอที่สองเชื่อมต่อแบบ Extended");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "ไม่พบจอที่สองเชื่อมต่อแบบ Extended");
         }
     }//GEN-LAST:event_btnShowPDFMouseClicked
 

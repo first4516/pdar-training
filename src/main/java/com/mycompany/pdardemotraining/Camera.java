@@ -36,6 +36,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 /**
@@ -56,6 +57,9 @@ public class Camera extends javax.swing.JDialog {
         super(parent, true);
         initComponents();
 
+        UIManager.put("OptionPane.messageFont", new Font("TH SarabunPSK", Font.PLAIN, 20));
+        UIManager.put("OptionPane.buttonFont", new Font("TH SarabunPSK", Font.PLAIN, 18));
+        
         FunctionMain fm = new FunctionMain();
         fm.setDisplayConnect(jLabelStatus);
     }
@@ -196,9 +200,8 @@ public class Camera extends javax.swing.JDialog {
                 .addGap(87, 87, 87)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -252,8 +255,8 @@ public class Camera extends javax.swing.JDialog {
             if (jCheckBoxconfirm.isSelected()) {
                 if (CaptureForm.imagesList.size() >= 1) {
                     Image = CaptureForm.imagesList.get(0).getScaledInstance(320, 240, 320);
-                    FunctionMain.PersonImagePreviewShow();
-                    FunctionMain.setPersonImage(Image, jPanelPhoto);
+//                    FunctionMain.PersonImagePreviewShow();
+//                    FunctionMain.setPersonImage(Image, jPanelPhoto);
                 } else {
                     MessageBox.Info("กรุณาถ่ายรูปก่อนแสดงผลจอที่ 2");
                     jCheckBoxconfirm.setSelected(false);
@@ -269,10 +272,15 @@ public class Camera extends javax.swing.JDialog {
     }//GEN-LAST:event_jCheckBoxconfirmActionPerformed
 
     private void btnDeletePhotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletePhotoMouseClicked
-        CaptureForm.imagesList.remove(0);
-        jLabelPhoto.setIcon(null);
-        FunctionMain.PersonImagePreviewClose();
-        jCheckBoxconfirm.setSelected(false);
+        if (CaptureForm.imagesList.size() > 0) {
+            CaptureForm.imagesList.remove(0);
+            jLabelPhoto.setIcon(null);
+            FunctionMain.PersonImagePreviewClose();
+            jCheckBoxconfirm.setSelected(false);
+        } else {
+            MessageBox.Info("ไม่สามารถลบรูปถ่ายได้ (กรุณาถ่ายรูปก่อน)");
+        }
+
     }//GEN-LAST:event_btnDeletePhotoMouseClicked
 
     /**
