@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CASE_SIGNNAME" columnCount="2" printOrder="Horizontal" pageWidth="555" pageHeight="80" columnWidth="277" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Error" isIgnorePagination="true" uuid="f20bdef9-e6c2-46bb-bc25-f455f90cd319">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PDAR"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://172.31.191.209:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/PDAR/CASEDAILY_files/CASEDAILY_SIGNNAME.jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/PDAR/CASEDAILY"/>
+	<parameter name="CASE_ID" class="java.lang.String"/>
+	<parameter name="HOST" class="java.lang.String"/>
+	<parameter name="PORT" class="java.lang.String"/>
+	<parameter name="BG_ID" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select sign_id,position,fullname,signtype,orderno,
+Case When rank Is Null  then ' ' Else rank end as rank
+from  "CRIMESCASE_SIGNNAME" 
+where CASESIGN_ID=$P{CASE_ID} 
+order by orderno,Sign_Id DESC]]>
+	</queryString>
+	<field name="rank" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RANK"/>
+	</field>
+	<field name="fullname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FULLNAME1"/>
+	</field>
+	<field name="statussign" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="POSITION1"/>
+	</field>
+	<field name="signimage" class="java.awt.image.BufferedImage"/>
+	<field name="finger" class="java.awt.image.BufferedImage"/>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$V{REPORT_COUNT}<=4]]></printWhenExpression>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="60" y="1" width="150" height="29" uuid="1b5cd930-2c0b-4b2f-8b94-f9104be30feb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{signimage}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="103" y="1" width="60" height="39" uuid="a6024c28-7536-43c2-8f25-853d9cfd9f02">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{finger}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="10" y="0" width="150" height="20" uuid="4f1764ea-5f12-4bcd-b7ab-c507cb2109d5">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="14"/>
+					<paragraph leftIndent="10" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ลงชื่อ "+$F{rank}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="1" width="100" height="19" uuid="710e6227-f529-4f49-b232-80cb4bf5759e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="14"/>
+					<paragraph rightIndent="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{statussign}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="20" width="220" height="20" uuid="9de3ee43-2f3e-41ce-8347-1c97c7d8845b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(  "+$F{fullname}+" ) "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

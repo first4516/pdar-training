@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EVIDENCEFORPDAR2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f498abe-3a39-44a4-a947-6deebe0f59af">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PDAR"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.jasperserver.url" value="http://172.31.191.209:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/PDAR/EVIDEANCEFORPDAR_P2_files/EVIDEANCEFORPDAR_P2_"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/PDAR/EVIDEANCEFORPDAR_P2"/>
+	<parameter name="EVIDENCE_ID" class="java.lang.Long"/>
+	<parameter name="HOST" class="java.lang.String"/>
+	<parameter name="PORT" class="java.lang.String"/>
+	<parameter name="dailyrecordbooknumyear" class="java.lang.String"/>
+	<parameter name="dailyrecordpageno" class="java.lang.String"/>
+	<parameter name="policestationname" class="java.lang.String"/>
+	<parameter name="policestationprovince" class="java.lang.String"/>
+	<parameter name="policestationregion" class="java.lang.String"/>
+	<parameter name="dailynumber" class="java.lang.String"/>
+	<parameter name="dailydatestr" class="java.lang.String"/>
+	<parameter name="dailytimestr" class="java.lang.String"/>
+	<parameter name="microtext" class="java.lang.String"/>
+	<parameter name="displaysignname" class="java.lang.String"/>
+	<parameter name="Parameter1" class="java.lang.String"/>
+	<parameter name="InformerFullname" class="java.lang.String"/>
+	<parameter name="InvestigatorRank" class="java.lang.String"/>
+	<parameter name="RegisterNameBy" class="java.lang.String"/>
+	<parameter name="RankPolice" class="java.lang.String"/>
+	<parameter name="PoliceName" class="java.lang.String"/>
+	<parameter name="bgimage" class="java.awt.image.BufferedImage"/>
+	<parameter name="IsPrintDraf" class="java.lang.Boolean"/>
+	<parameter name="PRINTDATE" class="java.lang.String"/>
+	<parameter name="REGISTER_NAME" class="java.lang.String"/>
+	<parameter name="MACHINE_ID" class="java.lang.String"/>
+	<parameter name="IP" class="java.lang.String"/>
+	<parameter name="PRINTTIME" class="java.lang.String"/>
+	<parameter name="MICROTEXT" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="signreport" class="java.util.List"/>
+	<parameter name="logourl" class="java.awt.image.BufferedImage"/>
+	<parameter name="REFER_ID" class="java.lang.String"/>
+	<parameter name="EDITDAILYDATE" class="java.lang.String"/>
+	<parameter name="EDITDAILYTIME" class="java.lang.String"/>
+	<parameter name="qrcode" class="java.awt.image.BufferedImage"/>
+	<queryString>
+		<![CDATA[Select Case When Ed.Evidencedailynumber=0 Then Ed.Evidenceurgentdailyno Else To_Char(Ed.Evidencedailynumber) End As Evidencedailynumber,
+Ed.Evidencedailydate As Dailydate,
+To_Char(Ed.Evidenceoccurrencedate,'DD', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Occurrencedate,
+To_Char(Ed.Evidenceoccurrencedate,'MONTH', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Occurrencemonth,
+To_Char(Ed.Evidenceoccurrencedate,'YYYY', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Occurrenceyear,
+To_Char(Ed.Evidenceoccurrencedate,'HH24:MI', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Occurrencetime,
+To_Char(Ed.Evidencedailydate,'DD MON YYYY', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Evidencedailydate,
+To_Char(Ed.Evidencedailydate,'HH24:MI', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Evidencedailytime,
+To_Char(Ed.Evidenceoccurrencedate,'DD MON YYYY', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Evidenceoccurrencedate,
+Ed.Evidenceoccurrenceaddress,Ed.Evidenceurgentdailyno,Ed.Evidencemicrotext,Ed.Interpretername,Ed.Witnessname,Ed.Evidencepagenumber,Ed.Orgcode,
+Ed.Sign_Comp,Ed.Sign_Reg,Ed.Sign_Pol,Ed.Empower,Ed.Sign_Witness,Ed.Sign_Trans,Ed.Authorizename,
+Case When Ed.Booknum is null Then Ed.Booknumurgent Else To_Char(Ed.Booknum) End As Booknum,
+Ed.Inquiry_Id,Ed.Inquiry_Position,
+Ed.Inquiry_Rank,Ed.Bookyear,Ed.Evidencedetail,Ed.Evidenceurgentdate,Ed.Evidencetambon,
+Ed.Evidenceamphur,Ed.Evidenceprovince,Ed.Stationname,Ed.Bh,Ed.Bk,ed.REGISTER_NAME,ed.REGISTER_RANK,
+'xxx.xxx.xxx'||Substr(Ed.Ip, Instr(Ed.Ip,'.',1,3)) Ip,
+Case When Ed.Machine_Id Is Null Then 0 Else Ed.Machine_Id End As Machine_Id,
+To_Char(Sysdate,'DD MON YYYY', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') Printdate,
+To_Char(Sysdate,'HH24:MI', 'nls_calendar=''Thai Buddha'' nls_date_language = Thai') PrintTime
+From Evidence_Daily Ed
+Where Ed.Evidence_Id=$P!{EVIDENCE_ID}]]>
+	</queryString>
+	<background>
+		<band height="711" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="104" y="209" width="1" height="500" uuid="dafe5e36-9c78-422a-ad4b-78554c23d01c">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="37" y="209" width="1" height="500" uuid="241236f5-f915-413c-a67e-cc89308e7891">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="209" width="1" height="500" uuid="a41e8256-bb99-40c9-82d8-6aeae305061a">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="554" y="209" width="1" height="500" uuid="9372ff5c-d249-4e4d-b7a5-54a74f6d9eec">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="20" y="93" width="528" height="609" uuid="99930b5f-db41-4ab8-b487-3975ca42f1c4"/>
+				<imageExpression><![CDATA[$P{bgimage}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="250" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="280" height="30" forecolor="#FF0000" uuid="80a5c436-8beb-45b6-9d98-0d685def457d">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unity" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="16"/>
+					<paragraph leftIndent="10" rightIndent="10" spacingBefore="10" spacingAfter="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["เล่มที่  "+$P{dailyrecordbooknumyear}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="0000">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="450" y="0" width="103" height="30" forecolor="#FF0000" uuid="40f4b8d4-91f1-443d-a403-3fe67ec56049">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="TH SarabunPSK" size="16"/>
+					<paragraph leftIndent="10" rightIndent="10" spacingBefore="10" spacingAfter="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["เลขที่ "+$P{dailyrecordpageno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="108" width="555" height="25" uuid="7ccd7933-d0ff-4c77-929d-ff9c8d9fdc32">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[สำนักงานตำรวจแห่งชาติ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="133" width="555" height="25" uuid="9ff7204f-e1ab-470d-b307-2391fc37df39">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รายงานประจำวันรับแจ้งเป็นหลักฐาน]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="209" width="35" height="41" uuid="c8a2f1ac-88b4-42c1-a448-df67475d32de">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<text><![CDATA[ลำดับ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="209" width="449" height="41" uuid="f94e8d5f-6f56-4604-aef6-3e146f576621">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<text><![CDATA[รายการ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="158" width="555" height="50" uuid="d14c0310-fd6a-40fc-8ac3-2aadc8781056">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="16" isBold="true"/>
+					<paragraph leftIndent="10" rightIndent="10" spacingBefore="10" spacingAfter="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{policestationname}+" "+$P{policestationprovince}+" "+$P{policestationregion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="106" y="209" width="449" height="41" uuid="1beb7dcd-8f42-458f-ba71-bfd1fb0535c0">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER}>1]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<text><![CDATA[รายการ-(ต่อ)]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="245" y="28" width="65" height="80" uuid="7813e515-d9ae-4ee3-9426-20926d7b9bad"/>
+				<imageExpression><![CDATA[$P{logourl}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="445" y="30" width="75" height="25" forecolor="#FA0F32" uuid="274cc5a2-c020-405d-b702-fdf00ccdbb11"/>
+				<box>
+					<pen lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="TH SarabunPSK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["เอกสารเพิ่มเติมหน้าที่ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="30" width="34" height="25" forecolor="#FA0F32" uuid="cc45cf2f-b2ee-4534-8842-808f82efe2d7"/>
+				<box>
+					<pen lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="TH SarabunPSK" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" จาก " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="209" width="70" height="41" uuid="8c9bf2c5-a1ed-4e71-84f1-eb7355c0a9a6">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<text><![CDATA[วัน เดือน ปี เวลา]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="70" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="0" width="35" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="8477d478-38cf-43d6-aba6-8a96ee26fadc">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="16"/>
+					<paragraph spacingBefore="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dailynumber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="36" y="0" width="70" height="30" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="454c2f87-706f-44cc-ae54-078499b53bb2">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="16"/>
+					<paragraph spacingBefore="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dailydatestr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="36" y="30" width="70" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="eaf82b3d-bdc0-4420-89a0-88c33c55650e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dailytimestr}+" น."]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="111" y="10" width="444" height="60" isRemoveLineWhenBlank="true" uuid="8af048b1-27c0-4dce-b7bc-b1a594f28ab4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="EVIDENCE_ID">
+					<subreportParameterExpression><![CDATA[$P{EVIDENCE_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="HOST">
+					<subreportParameterExpression><![CDATA[$P{HOST}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PORT">
+					<subreportParameterExpression><![CDATA[$P{PORT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{signreport})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="120" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="1" y="30" width="130" height="20" uuid="25a7bcee-45d4-467b-b94d-f8a72104869b">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="12"/>
+				</textElement>
+				<text><![CDATA[สนผ. 12-1/2537]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="370" y="61" width="185" height="19" uuid="9910ebae-9a80-4471-93a3-44302f6f2917">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="TH SarabunPSK" size="6"/>
+					<paragraph leftIndent="10" rightIndent="10" spacingBefore="10" spacingAfter="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MICROTEXT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="430" y="80" width="125" height="20" uuid="139160f6-de3a-4015-ab31-61a431841870">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["IP : "+$P{IP}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="51" y="100" width="250" height="20" uuid="4c436d38-369f-488f-8298-797d3f179516">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+					<paragraph lineSpacing="Double" leftIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{REGISTER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="51" y="79" width="250" height="20" uuid="22d8ea1d-1ff5-4f81-aff6-73f779a4e2d5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+					<paragraph lineSpacing="Double" leftIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PRINTDATE}+" เวลา  "+$P{PRINTTIME}+" น."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="430" y="100" width="125" height="20" uuid="f2f6155e-b5a1-46c6-8df7-7f27317517c0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["หมายเลขเครื่อง : "+$P{MACHINE_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="79" width="69" height="20" uuid="2ca79f81-4a45-4887-b53e-e0aed39784ad">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["วันที่พิมพ์    :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="100" width="69" height="20" uuid="6a722cd6-91ab-402c-8df4-e67d500e72c3">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="16" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ผู้พิมพ์        :"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="0" y="59" width="370" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="9b8a29d8-7f25-4999-b8f6-5025ac5660bc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$P{REFER_ID} .length()>=1]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ถูกแก้ไขมาจากประจำวันข้อที่ "+$P{REFER_ID} +" วันที่ "+$P{EDITDAILYDATE}+ " เวลา "+$P{EDITDAILYTIME}+" น."]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="413" y="80" width="40" height="40" uuid="f2783d36-a500-4bf6-8104-6287d5b54ef6">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{qrcode}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>
